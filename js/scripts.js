@@ -2,14 +2,14 @@ $(document).ready(function(){
   var vowels = ["a", "i", "o", "u", "e"];
   var special = "q";
 
-  $("form").submit(function(event){
+  $("form").submit(function(event) {
     event.preventDefault();
     var input = $("input").val().split('.').join('').split(' ');
 
     for(var i = 0; i < input.length; i++) {
       if(vowels.includes(input[i].charAt(0))) {
           $(".results").append("<span>" + input[i] + "way </span> ");
-      } else if (input[i].includes(special) === true){
+      } else if (input[i].includes(special) === true) {
         for (let letter of input[i]) {
           if(letter === special) {
             // Find q index
@@ -20,29 +20,18 @@ $(document).ready(function(){
           }
         }
       } else {
-          for (let letter of input[i]){
-            if(vowels.includes(letter)) {
-              // index number of first vowel in input[i]
-              var firstVowelIndex = input[i].indexOf(letter);
-              var beforeVowel = input[i].slice(0, firstVowelIndex).toLowerCase();
-              var restLetters = input[i].slice(firstVowelIndex, input[i].length);
-              $(".results").append("<span>" + restLetters + beforeVowel + "ay </span> ");
-
-            } else if (letter.includes("y")){
-              var indexOfY = input[i].indexOf("y");
-              var beforeY = input[i].slice(0, indexOfY);
-              var remainder = input[i].slice(indexOfY, input[i].length);
-              $(".results").append("<span>" + remainder + beforeY + "ay </span>")
-            }
-            }
-
+        for (let letter of input[i]){
+          if(vowels.includes(letter)) {
+            // index number of first vowel in input[i]
+            var firstVowelIndex = input[i].indexOf(letter);
+            var beforeVowel = input[i].slice(0, firstVowelIndex).toLowerCase();
+            var restLetters = input[i].slice(firstVowelIndex, input[i].length);
+            $(".results").append("<span>" + restLetters + beforeVowel + "ay </span> ");
+            break;
           }
-
-          $(".results").show();
-
-
-
-        };
-      });
-
-    });
+        }
+        $(".results").show();
+      }
+    }
+  });
+});
