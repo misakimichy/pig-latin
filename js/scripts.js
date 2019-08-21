@@ -4,13 +4,12 @@ $(document).ready(function(){
 
   $("form").submit(function(event){
     event.preventDefault();
-    var input = $("input").val().split(' ');
-    
+    var input = $("input").val().split('.').join('').split(' ');
     console.log(input);
+
     for(var i = 0; i < input.length; i++) {
-      for(var j = 0; j < vowels.length; j++) {
-        if(input[i].charAt(0) === vowels[j]) {
-          // console.log(input[i] + 'way');
+        if(vowels.includes(input[i].charAt(0))) {
+          console.log(input[i] + 'way');
         } else if (input[i].includes(special) === true){
           for (let letter of input[i]) {
             if(letter === special) {
@@ -23,16 +22,16 @@ $(document).ready(function(){
           }
         } else {
             for (let letter of input[i]){
-              if(letter === vowels[j]) {
+              if(vowels.includes(letter)) {
                 // index number of first vowel in input[i]
                 var firstVowelIndex = input[i].indexOf(letter);
                 var beforeVowel = input[i].slice(0, firstVowelIndex).toLowerCase();
                 var restLetters = input[i].slice(firstVowelIndex, input[i].length);
-                // console.log(restLetters + beforeVowel + 'ay');
+                console.log(restLetters + beforeVowel + 'ay');
+                break;
                 }
               }
             };
-          }
         }
       });
     });
