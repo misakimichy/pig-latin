@@ -15,6 +15,9 @@ $(document).ready(function(){
               if(letter === vowels[j]) {
                 // index number of first vowel in input[i]
                 var firstVowel = input[i].indexOf(letter);
+                var beforeVowel = input[i].slice(0, firstVowel).toLowerCase();
+                var restLetters = input[i].slice(firstVowel, input[i].length);
+                console.log(restLetters + beforeVowel + 'ey');
                 }
               }
             };
